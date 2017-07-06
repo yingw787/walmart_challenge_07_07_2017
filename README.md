@@ -45,7 +45,7 @@
     - `git clone https://github.com/yingw787/walmart_challenge_07_07_2017 /path/to/directory`
 
 4. Install dependencies:
-    - TODO!!!
+    - Build the project.
 
 
 ### Dependencies
