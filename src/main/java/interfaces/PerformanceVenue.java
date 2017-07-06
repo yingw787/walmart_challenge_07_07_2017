@@ -25,4 +25,9 @@ public interface PerformanceVenue {
     */
     boolean markSeatAsHeld(int seatId);
 
+    /**
+    * Get the number of available seats within the PerformanceVenue.
+    */
+    int getNumAvailableSeats();
+
 }

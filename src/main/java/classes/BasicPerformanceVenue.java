@@ -38,6 +38,7 @@ public class BasicPerformanceVenue implements PerformanceVenue {
 
     public boolean markSeatAsReserved(int basicSeatId) {
         try {
+            this.availableSeats -= 1;
             return true;
         } catch (IllegalStateException e) {
             return false;
@@ -50,6 +51,10 @@ public class BasicPerformanceVenue implements PerformanceVenue {
         } catch (IllegalStateException e) {
             return false;
         }
+    }
+
+    public int getNumAvailableSeats() {
+        return this.availableSeats;
     }
 
 }

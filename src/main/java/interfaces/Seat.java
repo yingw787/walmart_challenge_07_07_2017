@@ -9,7 +9,7 @@ public interface Seat {
     /**
     * Hold Seat.
     */
-    void hold();
+    void hold(Integer holderId);
 
     /**
     * Reserve Seat.
