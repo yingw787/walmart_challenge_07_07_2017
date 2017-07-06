@@ -8,4 +8,18 @@ public class BasicTicketServiceTest {
         BasicTicketService classUnderTest = new BasicTicketService();
         assertNotNull("BasicTicketService has a numSeatsAvailable method", classUnderTest.numSeatsAvailable());
     }
+
+    @Test public void testHasFindAndHoldSeatsMethod() {
+        BasicTicketService classUnderTest = new BasicTicketService();
+        int numSeats = 5; // stubbed numSeats input
+        String customerEmail = "thing"; // stubbed customerEmail input
+        assertNotNull("BasicTicketService has a findAndHoldSeats method", classUnderTest.findAndHoldSeats(numSeats, customerEmail));
+    }
+
+    @Test public void testHasReserveSeatsMethod() {
+        BasicTicketService classUnderTest = new BasicTicketService();
+        int seatHoldId = 5; // stubbed seatHoldId input
+        String customerEmail = "thing"; // stubbed customerEmail input
+        assertNotNull("BasicTicketService has a reserveSeats method", classUnderTest.reserveSeats(seatHoldId, customerEmail));
+    }
 }
