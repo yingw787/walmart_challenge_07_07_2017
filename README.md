@@ -64,3 +64,5 @@
 ### Design Considerations
 
 - All classes should implement an interface.
+- Use private variables when possible, and only expose with public methods, to
+  avoid pollution.
