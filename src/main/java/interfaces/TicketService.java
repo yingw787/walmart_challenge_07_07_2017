@@ -1,3 +1,7 @@
+package interfaces;
+
+import interfaces.SeatHold;
+
 public interface TicketService {
 
     /**

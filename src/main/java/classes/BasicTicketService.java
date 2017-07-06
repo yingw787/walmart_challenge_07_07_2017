@@ -1,3 +1,7 @@
+package classes;
+
+import interfaces.TicketService;
+
 public class BasicTicketService implements TicketService {
 
     public int numSeatsAvailable() {
