@@ -42,10 +42,10 @@ public class BasicTicketService implements TicketService {
     /**
     * The number of seats in the venue that are neither held nor reserved
     *
-    * @return the number of tickets available in the venue
+    * @return the number of tickets available in the performanceVenue
     */
     public int numSeatsAvailable() {
-        return 0;
+        return this.performanceVenue.getNumAvailableSeats();
     }
 
     /**

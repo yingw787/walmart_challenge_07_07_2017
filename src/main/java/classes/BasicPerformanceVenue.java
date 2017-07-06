@@ -47,6 +47,7 @@ public class BasicPerformanceVenue implements PerformanceVenue {
 
     public boolean markSeatAsHeld(int basicSeatId) {
         try {
+            this.availableSeats -= 1;
             return true;
         } catch (IllegalStateException e) {
             return false;
