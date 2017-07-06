@@ -58,4 +58,9 @@
 - Assume that there is one instance of a "performance venue" in any given process.
 - The problem describes "best available seats", which is taken to assume that seats have different desirability.
 - Assume that end-user inputs are all sanitized, and all user information (such as email addresses) are validated.
-- 
+- Assume that one ticket matches one seat.
+
+
+### Design Considerations
+
+- All classes should implement an interface.

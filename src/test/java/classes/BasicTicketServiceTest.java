@@ -25,4 +25,6 @@ public class BasicTicketServiceTest {
         assertNotNull("BasicTicketService has a reserveSeats method", classUnderTest.reserveSeats(seatHoldId, customerEmail));
     }
 
+    // Test numSeatsAvailable() method:
+    //
 }
