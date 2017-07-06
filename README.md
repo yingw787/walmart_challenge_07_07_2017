@@ -28,3 +28,18 @@
     JVM:          1.8.0_131 (Oracle Corporation 25.131-b11)
     OS:           Mac OS X 10.12.5 x86_64
     ```
+
+- Clone the repository:
+    - `git clone https://github.com/yingw787/walmart_challenge_07_07_2017 /path/to/directory`
+
+- Install dependencies:
+    - TODO!!!
+
+- Build the project:
+    - `gradle`
+
+- Execute the executable:
+    - TODO!!!
+
+- Run tests:
+    - `gradle test`
