@@ -28,10 +28,12 @@ public class BasicSeat implements Seat {
     * Hold BasicSeat.
     */
     public void hold() {
-        if (this.isReserved) {
-            // TODO: Raise Exception because you cannot hold a reserved seat.
+        if (!this.isFree()) {
+            // TODO: Raise Exception because you cannot hold a reserved or held seat.
+            throw new IllegalStateException("Cannot hold seat if it is not free.");
         } else {
             this.isHeld = true;
+            this.isReserved = false;
         }
     }
 
@@ -39,8 +41,21 @@ public class BasicSeat implements Seat {
     * Reserve BasicSeat.
     */
     public void reserve() {
+        if (!this.isFree()) {
+            // TODO: Raise Exception because you cannot hold a reserved or held seat.
+            throw new IllegalStateException("Cannot reserve seat if it is not free.");
+        } else {
+            this.isHeld = false;
+            this.isReserved = true;
+        }
+    }
+
+    /**
+    * Free BasicSeat.
+    */
+    public void free() {
         this.isHeld = false;
-        this.isReserved = true;
+        this.isReserved = false;
     }
 
     /**

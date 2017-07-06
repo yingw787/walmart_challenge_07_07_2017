@@ -17,6 +17,11 @@ public interface Seat {
     void reserve();
 
     /**
+    * Free Seat.
+    */
+    void free();
+
+    /**
     * Checks whether Seat instance is free.
     * @return whether Seat instance is free.
     */
