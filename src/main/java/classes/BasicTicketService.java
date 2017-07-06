@@ -16,8 +16,8 @@ public class BasicTicketService implements TicketService {
 
     /**
     * The Performance Venue attached to the BasicTicketService.
-    * Separated out because don't want to tightly couple the BasicTicketService to a particular Performance Venue.
-    *
+    * Separated out because don't want to tightly couple the BasicTicketService
+    *   to a particular Performance Venue.
     */
     private PerformanceVenue performanceVenue;
 

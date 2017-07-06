@@ -15,6 +15,7 @@ import interfaces.PerformanceVenue;
 *   - Seats: A matrix of BasicSeats.
 *   - numRows: The number of rows in Seats.
 *   - numCols: The number of columns in Seats.
+*   - numAvailableSeats: The number of available seats in BasicPerformanceVenue.
 * @author Ying Wang
 */
 public class BasicPerformanceVenue implements PerformanceVenue {
@@ -22,15 +23,24 @@ public class BasicPerformanceVenue implements PerformanceVenue {
     private BasicSeat[][] Seats;
     private int numRows;
     private int numCols;
+    private int availableSeats;
 
     public BasicPerformanceVenue(int numRows, int numCols) {
         this.numRows = numRows;
         this.numCols = numCols;
-
+        this.availableSeats = numRows * numCols;
 
     }
 
+    private boolean isValidSeatId(int basicSeatId) {
+        return true;
+    }
+
     public void markSeatAsReserved(int basicSeatId) {
+
+    }
+
+    public void markSeatAsHeld(int basicSeatId) {
 
     }
 }
