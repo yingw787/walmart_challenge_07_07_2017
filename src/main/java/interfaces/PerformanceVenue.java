@@ -14,6 +14,6 @@ public interface PerformanceVenue {
     /**
     * Reserve exactly one seat in the PerformanceVenue.
     */
-    // void reserveSeat(Seat seat);
+    void markSeatAsReserved(int seatId);
 
 }

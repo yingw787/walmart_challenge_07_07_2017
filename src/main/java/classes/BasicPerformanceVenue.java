@@ -23,7 +23,14 @@ public class BasicPerformanceVenue implements PerformanceVenue {
     private int numRows;
     private int numCols;
 
-    public void markSeatAsReserved() {
+    public BasicPerformanceVenue(int numRows, int numCols) {
+        this.numRows = numRows;
+        this.numCols = numCols;
+
+
+    }
+
+    public void markSeatAsReserved(int basicSeatId) {
 
     }
 }

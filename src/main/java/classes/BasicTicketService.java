@@ -2,10 +2,14 @@ package classes;
 
 import classes.BasicPerformanceVenue;
 import classes.BasicSeatHold;
+import interfaces.PerformanceVenue;
 import interfaces.TicketService;
 
 /**
 * BasicTicketService is a basic implementation of the TicketService interface.
+* Instance variables:
+*   - performanceVenue: an instance of a class that implements
+*     PerformanceVenue.
 * @author Ying Wang
 */
 public class BasicTicketService implements TicketService {
@@ -15,7 +19,25 @@ public class BasicTicketService implements TicketService {
     * Separated out because don't want to tightly couple the BasicTicketService to a particular Performance Venue.
     *
     */
+    private PerformanceVenue performanceVenue;
 
+    public BasicTicketService() {
+        /*
+            Initialize performanceVenue with some default numRows and numCols.
+
+            This is because BasicTicketService should not care about the
+            specifics of the performance venue layout.
+        */
+        this.performanceVenue = new BasicPerformanceVenue(5, 5);
+    }
+
+    public BasicTicketService(PerformanceVenue performanceVenue) {
+        /*
+            If user would like to specify a performanceVenue for the
+            BasicTicketService to wrap, they should be able to do so.
+        */
+        this.performanceVenue = performanceVenue;
+    }
 
     /**
     * The number of seats in the venue that are neither held nor reserved
