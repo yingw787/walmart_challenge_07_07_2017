@@ -11,6 +11,16 @@
     Java HotSpot(TM) 64-Bit Server VM (build 25.131-b11, mixed mode)
     ```
 
+    Alternatively, this output is also returned (on another machine):
+
+    ```bash
+    java version "1.8.0_121"
+    Java(TM) SE Runtime Environment (build 1.8.0_121-b13)
+    Java HotSpot(TM) 64-Bit Server VM (build 25.121-b13, mixed mode)
+    ```
+
+    The important thing is to use Java 1.8.
+
 2. Download Gradle, a Java package manager, using Homebrew:
     - `brew update && brew install gradle`
     - When I run `gradle -v` in bash, this output is returned:
@@ -28,6 +38,8 @@
     JVM:          1.8.0_131 (Oracle Corporation 25.131-b11)
     OS:           Mac OS X 10.12.5 x86_64
     ```
+
+    The important thing is to use Gradle 4.0.
 
 3. Clone the repository:
     - `git clone https://github.com/yingw787/walmart_challenge_07_07_2017 /path/to/directory`
