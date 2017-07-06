@@ -8,6 +8,7 @@ public interface Seat {
 
     /**
     * Hold Seat.
+    * @param holderId: the ID of the holder that will hold the seat.
     */
     void hold(Integer holderId);
 
