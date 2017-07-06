@@ -2,7 +2,7 @@
 
 ### Installation instructions
 
-- Download the Java JDK (I am using the macOS version) from [Oracle's Java 8 Downloads Page](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html):
+1. Download the Java JDK (I am using the macOS version) from [Oracle's Java 8 Downloads Page](http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html):
     - When I run `java -version` in bash, this output is returned:
 
     ```bash
@@ -11,7 +11,7 @@
     Java HotSpot(TM) 64-Bit Server VM (build 25.131-b11, mixed mode)
     ```
 
-- Download Gradle, a Java package manager, using Homebrew:
+2. Download Gradle, a Java package manager, using Homebrew:
     - `brew update && brew install gradle`
     - When I run `gradle -v` in bash, this output is returned:
 
@@ -29,14 +29,20 @@
     OS:           Mac OS X 10.12.5 x86_64
     ```
 
-- Clone the repository:
+3. Clone the repository:
     - `git clone https://github.com/yingw787/walmart_challenge_07_07_2017 /path/to/directory`
 
-- Install dependencies:
+4. Install dependencies:
     - TODO!!!
 
+
+### Dependencies
+    - TODO!!!
+
+### Scripts
+
 - Build the project:
-    - `gradle`
+    - `gradle build`
 
 - Execute the executable:
     - TODO!!!
