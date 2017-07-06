@@ -57,7 +57,7 @@
     - `gradle build`
 
 - Execute the executable:
-    - TODO!!!
+    - `./gradlew build`
 
 - Run tests:
     - `gradle test`
