@@ -49,15 +49,15 @@
 
 
 ### Dependencies
-    - TODO!!!
+    - Listed in `build.gradle`.
 
 ### Scripts
 
 - Build the project:
-    - `gradle build`
-
-- Execute the executable:
     - `./gradlew build`
 
+- Execute the executable:
+    - `./gradlew run`
+
 - Run tests:
-    - `gradle test`
+    - `./gradlew test`
