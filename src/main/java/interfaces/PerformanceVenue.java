@@ -13,12 +13,16 @@ public interface PerformanceVenue {
 
     /**
     * Reserve exactly one seat in the PerformanceVenue.
+    * Returns true if the seat has been successfully marked as reserved.
+    * Returns false if the seat could not be successfully marked as reserved.
     */
-    void markSeatAsReserved(int seatId);
+    boolean markSeatAsReserved(int seatId);
 
     /**
     * Hold exactly one seat in the PerformanceVenue.
+    * Returns true if the seat has been successfully marked as held.
+    * Returns false if the seat could not be successfully marked as held.
     */
-    void markSeatAsHeld(int seatId);
+    boolean markSeatAsHeld(int seatId);
 
 }

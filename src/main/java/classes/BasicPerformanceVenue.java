@@ -36,11 +36,11 @@ public class BasicPerformanceVenue implements PerformanceVenue {
         return true;
     }
 
-    public void markSeatAsReserved(int basicSeatId) {
-
+    public boolean markSeatAsReserved(int basicSeatId) {
+        return false;
     }
 
-    public void markSeatAsHeld(int basicSeatId) {
-
+    public boolean markSeatAsHeld(int basicSeatId) {
+        return false;
     }
 }
