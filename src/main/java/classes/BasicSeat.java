@@ -41,9 +41,15 @@ public class BasicSeat implements Seat {
     * Reserve BasicSeat.
     */
     public void reserve() {
-        if (!this.isFree()) {
+        reserve(null);
+    }
+
+    public void reserve(Integer claimerId) {
+        // Can reserve a seat that is being held, as long as the person
+        // reserving the seat is
+        if (this.isReserved || (this.isHeld && claimerId != this.id)) {
             // TODO: Raise Exception because you cannot hold a reserved or held seat.
-            throw new IllegalStateException("Cannot reserve seat if it is not free.");
+            throw new IllegalStateException("Cannot reserve seat if it is reserved or if the claimer's id does not match the holder's id.");
         } else {
             this.isHeld = false;
             this.isReserved = true;
