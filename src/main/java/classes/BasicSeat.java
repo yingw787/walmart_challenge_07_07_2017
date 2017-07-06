@@ -10,7 +10,8 @@ import interfaces.Seat;
 *     factor or combination of factors
 *   - isHeld: boolean to see if the BasicSeat is being held.
 *   - isReserved: boolean to see if the BasicSeat is being reserved.
-*   - holderId: the ID of the element holding the BasicSeat.
+*   - holderId: the ID of the claimer to the Seat, which for now is the
+*     customerEmail.
 * @author Ying Wang
 */
 public class BasicSeat implements Seat {
@@ -19,7 +20,7 @@ public class BasicSeat implements Seat {
     private int value;
     private boolean isHeld = false;
     private boolean isReserved = false;
-    private Integer holderId;
+    private String holderId;
 
     public BasicSeat(int id, int value) {
         this.id = id;
@@ -29,7 +30,7 @@ public class BasicSeat implements Seat {
     /**
     * Hold BasicSeat.
     */
-    public void hold(Integer holderId) {
+    public void hold(String holderId) {
         if (!this.isFree()) {
             // TODO: Raise Exception because you cannot hold a reserved or held seat.
             throw new IllegalStateException("Cannot hold seat if it is not free.");
@@ -47,7 +48,7 @@ public class BasicSeat implements Seat {
         reserve(null);
     }
 
-    public void reserve(Integer claimerId) {
+    public void reserve(String claimerId) {
         // Can reserve a seat that is being held, as long as the person
         // reserving the seat is
         if (this.isReserved || (this.isHeld && claimerId != this.holderId)) {
