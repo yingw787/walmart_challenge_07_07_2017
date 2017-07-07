@@ -17,15 +17,14 @@ public class BasicSeatHold implements SeatHold {
     private int id = 1;
     private ArrayList<Integer> basicSeatIds;
 
-    public BasicSeatHold(ArrayList<BasicSeat> basicSeats) {
+    public BasicSeatHold(ArrayList<Integer> basicSeatIds) {
         // Generate ID from IDs of BasicSeats within reservedSeats.
         // That way, IDs will likely never collide.
         // To generate unique ID, multiply all the IDs of the BasicSeats together.
-        for (BasicSeat seat: basicSeats) {
-            int seatId = seat.getId();
+        for (Integer seatId: basicSeatIds) {
             this.id *= seatId;
-            this.basicSeatIds.add(seatId);
         }
+        this.basicSeatIds = basicSeatIds;
     }
 
     public void addHeldSeat(BasicSeat basicSeat) {

@@ -75,7 +75,7 @@ public class BasicPerformanceVenue implements PerformanceVenue {
     * @param basicSeatId: ID of a BasicSeat within BasicPerformanceVenue.
     * @return BasicSeat with given ID.
     */
-    private BasicSeat getSeatById(int basicSeatId) {
+    private BasicSeat getSeatById(int basicSeatId) throws IndexOutOfBoundsException {
         if (!this.isValidSeatId(basicSeatId)) {
             String exceptionMessage = String.format("basicSeatId must be greater than or equal to %d and less than %d", 0, numRows * numCols);
             throw new IndexOutOfBoundsException(exceptionMessage);
@@ -86,34 +86,41 @@ public class BasicPerformanceVenue implements PerformanceVenue {
         return this.seats[rowIdx][colIdx];
     }
 
+    private void setSeatById(int basicSeatId, BasicSeat seat) throws IndexOutOfBoundsException {
+        if (!this.isValidSeatId(basicSeatId)) {
+            String exceptionMessage = String.format("basicSeatId must be greater than or equal to %d and less than %d", 0, numRows * numCols);
+            throw new IndexOutOfBoundsException(exceptionMessage);
+        }
+
+        int rowIdx = basicSeatId / numCols;
+        int colIdx = basicSeatId % numCols;
+        this.seats[rowIdx][colIdx] = seat;
+    }
+
     /**
     * Mark BasicSeat as reserved.
     * @return the ID of the BasicSeat.
     */
-    public int markSeatAsReserved(int basicSeatId) {
-        try {
-            return 0;
-        } catch (IllegalStateException e) {
-            // Roll back state of BasicSeat before change was made.
-            // (rollback. huehuehue)
-            return -1;
-        }
+    public void markSeatAsReserved(int basicSeatId, String claimerId) {
+        BasicSeat seat = this.getSeatById(basicSeatId);
+        seat.reserve(claimerId);
+        this.setSeatById(basicSeatId, seat);
     }
 
     /**
     * Mark BasicSeat as held.
     * @return the ID of the BasicSeat.
     */
-    public int markSeatAsHeld(int basicSeatId) {
-        try {
-            // as reserving a BasicSeat is only possible when it is held,
-            // only decrement the number of available seats when it is marked as held to avoid duplication.
-            this.availableSeats -= 1;
-            return 0;
-        } catch (IllegalStateException e) {
-            // Roll back state of BasicSeat before change was made.
-            return -1;
-        }
+    public void markSeatAsHeld(int basicSeatId, String holderId) {
+
+        // Copy the seat and make changes to the copy before saving, so that if an exception is thrown, no need to roll back state.
+        BasicSeat seat = this.getSeatById(basicSeatId);
+        seat.hold(holderId);
+        this.setSeatById(basicSeatId, seat);
+
+        // as reserving a BasicSeat is only possible when it is held,
+        // only decrement the number of available seats when it is marked as held to avoid duplication.
+        this.availableSeats -= 1;
     }
 
     /**
@@ -157,6 +164,8 @@ public class BasicPerformanceVenue implements PerformanceVenue {
             }
         }
 
+        // If haven't returned yet, that means all seats have been
+        //  traversed through and there are still seats demanded.
         String exceptionMessage = "Not enough seats available.";
         throw new IndexOutOfBoundsException(exceptionMessage);
     }

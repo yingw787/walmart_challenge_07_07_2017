@@ -71,14 +71,15 @@ public class BasicTicketService implements TicketService {
     * (need to potentially traverse through all seats in the performance
     *   venue in order to find available ones)
     */
-    public BasicSeatHold findAndHoldSeats(int numSeats, String customerEmail) throws IndexOutOfBoundsException {
-        try {
-            ArrayList<Integer> basicSeatIds = this.performanceVenue.getMostValuableAvailableSeats(numSeats);
-        } catch (IndexOutOfBoundsException e) {
-            String exceptionMessage = "Not enough seats available.";
-            throw new IndexOutOfBoundsException(exceptionMessage);
+    public BasicSeatHold findAndHoldSeats(int numSeats, String customerEmail) {
+        ArrayList<Integer> basicSeatIds = this.performanceVenue.getMostValuableAvailableSeats(numSeats);
+        for (Integer seatId: basicSeatIds) {
+            this.performanceVenue.markSeatAsHeld(seatId, customerEmail);
         }
-        return new BasicSeatHold(new ArrayList<BasicSeat>());
+
+        BasicSeatHold reservation = new BasicSeatHold(basicSeatIds);
+        this.reservations.add(reservation);
+        return reservation;
     }
 
     /**
