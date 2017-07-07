@@ -9,8 +9,7 @@ import interfaces.SeatHold;
 * BasicSeatHold is a basic implementation of the SeatHold interface.
 * Instance variables:
 *   - id: the ID of BasicSeatHold instance.
-*   -
-*   -
+*   - basicSeatIds: an ArrayList of IDs of BasicSeats tracked by BasicSeatHold instance.
 * @author Ying Wang
 */
 public class BasicSeatHold implements SeatHold {
@@ -27,6 +26,16 @@ public class BasicSeatHold implements SeatHold {
             this.id *= seatId;
             this.basicSeatIds.add(seatId);
         }
+    }
+
+    public void addHeldSeat(BasicSeat basicSeat) {
+        int seatId = basicSeat.getId();
+        this.id *= seatId;
+        this.basicSeatIds.add(seatId);
+    }
+
+    public ArrayList<Integer> getBasicSeatIds() {
+        return this.basicSeatIds;
     }
 
     public int getId() {

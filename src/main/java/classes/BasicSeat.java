@@ -30,7 +30,7 @@ public class BasicSeat implements Seat {
     /**
     * Hold BasicSeat.
     */
-    public void hold(String holderId) {
+    public void hold(String holderId) throws IllegalStateException {
         if (!this.isFree()) {
             // TODO: Raise Exception because you cannot hold a reserved or held seat.
             throw new IllegalStateException("Cannot hold seat if it is not free.");
@@ -45,7 +45,7 @@ public class BasicSeat implements Seat {
     * Reserve BasicSeat.
     * Assume that BasicSeat can only be reserved after it has been held.
     */
-    public void reserve(String claimerId) {
+    public void reserve(String claimerId) throws IllegalStateException {
         // Can reserve a seat that is being held, as long as the person
         // reserving the seat is the same one who held it, or if the seat is
         // not reserved already.
