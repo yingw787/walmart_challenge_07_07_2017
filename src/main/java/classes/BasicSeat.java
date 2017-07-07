@@ -43,11 +43,8 @@ public class BasicSeat implements Seat {
 
     /**
     * Reserve BasicSeat.
+    * Assume that BasicSeat can only be reserved after it has been held.
     */
-    public void reserve() {
-        reserve(null);
-    }
-
     public void reserve(String claimerId) {
         // Can reserve a seat that is being held, as long as the person
         // reserving the seat is the same one who held it, or if the seat is

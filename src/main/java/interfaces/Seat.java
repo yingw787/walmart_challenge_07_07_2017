@@ -13,13 +13,10 @@ public interface Seat {
     void hold(String holderId);
 
     /**
-    * Reserve Seat.
-    * Without args, is reserving Seat without holding it.
-    * With args, is reserving Seat after holding it. Can only be done if
+    * Reserves Seat after Seat is held. Can only be done if
     * claimerId matches the Seat's holderId.
     * @param claimerId: the ID of the claimer that will reserve the Seat.
     */
-    void reserve();
     void reserve(String claimerId);
 
     /**

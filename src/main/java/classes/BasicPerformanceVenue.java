@@ -41,24 +41,48 @@ public class BasicPerformanceVenue implements PerformanceVenue {
         return true;
     }
 
-    public boolean markSeatAsReserved(int basicSeatId) {
+    /**
+    * Mark BasicSeat as reserved.
+    * @return the ID of the BasicSeat.
+    */
+    public int markSeatAsReserved(int basicSeatId) {
         try {
-            this.availableSeats -= 1;
-            return true;
+            return 0;
         } catch (IllegalStateException e) {
-            return false;
+            // Roll back state of BasicSeat before change was made.
+            // (rollback. huehuehue)
+            return -1;
         }
     }
 
-    public boolean markSeatAsHeld(int basicSeatId) {
+    /**
+    * Mark BasicSeat as held.
+    * @return the ID of the BasicSeat.
+    */
+    public int markSeatAsHeld(int basicSeatId) {
         try {
+            // as reserving a BasicSeat is only possible when it is held,
+            // only decrement the number of available seats when it is marked as held to avoid duplication.
             this.availableSeats -= 1;
-            return true;
+            return 0;
         } catch (IllegalStateException e) {
-            return false;
+            // Roll back state of BasicSeat before change was made.
+            return -1;
         }
     }
 
+    /**
+    */
+    public int markSeatAsFreed(int basicSeatId) {
+        // TODO: Free the BasicSeat.
+        this.availableSeats += 1;
+        return -1;
+    }
+
+    /**
+    * Gets number of available seats (not held or reserved).
+    * @return the number of available seats.
+    */
     public int getNumAvailableSeats() {
         return this.availableSeats;
     }

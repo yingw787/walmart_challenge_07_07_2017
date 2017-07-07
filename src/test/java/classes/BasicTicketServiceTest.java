@@ -6,7 +6,7 @@ import classes.BasicTicketService;
 
 public class BasicTicketServiceTest {
 
-    // Test that the BasicTicketService implements the TicketService interface.
+    // Test that the BasicTicketService implements the TicketService interface, and methods exist.
     @Test public void testHasNumSeatsAvailableMethod() {
         BasicTicketService classUnderTest = new BasicTicketService();
         assertNotNull("BasicTicketService has a numSeatsAvailable method", classUnderTest.numSeatsAvailable());
@@ -26,6 +26,7 @@ public class BasicTicketServiceTest {
         assertNotNull("BasicTicketService has a reserveSeats method", classUnderTest.reserveSeats(seatHoldId, customerEmail));
     }
 
+
     // Test numSeatsAvailable() method:
     @Test public void testReturnsTotalSeatsIfNoneAllocated() {
         // Works with constructor BasicTicketService(int numRows, int numCols)
@@ -42,7 +43,24 @@ public class BasicTicketServiceTest {
         assertEquals(expectedOutputTwo, gotOutputTwo);
     }
 
-    // @Test public void testReturnsDiffSeatsIfSomeAllocated() {
+    // @Test public void testReturnsRemainingNumSeatsIfSomeSeatsAllocated() {
     //     BasicPerformanceVenue venue = new BasicPerformanceVenue();
     // }
+
+    // @Test public void testReturnsNoSeatsIfAllSeatsAllocated() {
+    //
+    // }
+
+
+    // Test findAndHoldSeats() method:
+    // @Test public void testCanFindOneSeat() {
+    //
+    // }
+
+
+    // @Test public void
+
+
+    // Test reserveSeats() method:
+
 }

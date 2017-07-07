@@ -16,14 +16,14 @@ public interface PerformanceVenue {
     * @param seatId: the ID of the Seat to be marked as reserved.
     * @return: true if marking is successful, false if not successful.
     */
-    boolean markSeatAsReserved(int seatId);
+    int markSeatAsReserved(int seatId);
 
     /**
     * Hold exactly one seat in the PerformanceVenue.
     * @param seatId: the ID of the Seat to be marked as reserved.
     * @return: true if marking is successful, false if not successful.
     */
-    boolean markSeatAsHeld(int seatId);
+    int markSeatAsHeld(int seatId);
 
     /**
     * Gets number of available seats.

@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.ArrayList;
+
 import classes.BasicPerformanceVenue;
 import classes.BasicSeat;
 import classes.BasicSeatHold;
@@ -11,6 +13,7 @@ import interfaces.TicketService;
 * Instance variables:
 *   - performanceVenue: an instance of a class that implements
 *     PerformanceVenue.
+*   - reservations: an ArrayList of BasicSeatHold objects.
 * @author Ying Wang
 */
 public class BasicTicketService implements TicketService {
@@ -21,6 +24,7 @@ public class BasicTicketService implements TicketService {
     *   to a particular Performance Venue.
     */
     private PerformanceVenue performanceVenue;
+    private ArrayList<BasicSeatHold> reservations = new ArrayList<BasicSeatHold>();
 
     public BasicTicketService() {
         /*
