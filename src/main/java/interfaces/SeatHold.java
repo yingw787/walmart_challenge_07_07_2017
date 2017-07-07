@@ -9,5 +9,15 @@ package interfaces;
 public interface SeatHold {
     // TODO: Add in methods and variables.
 
+    /**
+    * gets ID of SeatHold.
+    * @return the ID of SeatHold instance.
+    */
+    int getId();
 
+    /**
+    * Gets reservation code of SeatHold.
+    * @return reservation code of SeatHold instance.
+    */
+    String getReservationCode();
 }

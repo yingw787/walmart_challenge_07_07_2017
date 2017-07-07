@@ -1,6 +1,7 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import classes.BasicPerformanceVenue;
 import classes.BasicTicketService;
 
 public class BasicTicketServiceTest {
@@ -26,5 +27,22 @@ public class BasicTicketServiceTest {
     }
 
     // Test numSeatsAvailable() method:
-    //
+    @Test public void testReturnsTotalSeatsIfNoneAllocated() {
+        // Works with constructor BasicTicketService(int numRows, int numCols)
+        BasicPerformanceVenue venue = new BasicPerformanceVenue(6, 6);
+        BasicTicketService ticketServiceOne = new BasicTicketService(venue);
+        int expectedOutputOne = 6 * 6;
+        int gotOutputOne = ticketServiceOne.numSeatsAvailable();
+        assertEquals(expectedOutputOne, gotOutputOne);
+
+        // Works with constructor BasicTicketService();
+        BasicTicketService ticketServiceTwo = new BasicTicketService();
+        int expectedOutputTwo = 5 * 5;
+        int gotOutputTwo = ticketServiceTwo.numSeatsAvailable();
+        assertEquals(expectedOutputTwo, gotOutputTwo);
+    }
+
+    // @Test public void testReturnsDiffSeatsIfSomeAllocated() {
+    //     BasicPerformanceVenue venue = new BasicPerformanceVenue();
+    // }
 }

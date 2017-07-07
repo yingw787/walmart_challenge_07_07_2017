@@ -1,6 +1,7 @@
 package classes;
 
 import classes.BasicPerformanceVenue;
+import classes.BasicSeat;
 import classes.BasicSeatHold;
 import interfaces.PerformanceVenue;
 import interfaces.TicketService;
@@ -56,7 +57,7 @@ public class BasicTicketService implements TicketService {
     * @return a SeatHold object identifying the specific seats and related information
     */
     public BasicSeatHold findAndHoldSeats(int numSeats, String customerEmail) {
-        return new BasicSeatHold();
+        return new BasicSeatHold(new BasicSeat[0]);
     }
 
     /**

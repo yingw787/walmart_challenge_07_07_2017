@@ -64,6 +64,7 @@
     - Design classes for flexibility, as the interface will manage how strict implementations are
 - Assume that no assumption is made about the seat's position within the performance venue,
   and that value is attached to each seat by itself.
+- Assume that if not all the seats could be allocated in findAndHoldSeats(), then do not reserve any seats (instead of reserving all BasicSeats possible).
 
 
 ### Design Considerations

@@ -20,15 +20,20 @@ import interfaces.PerformanceVenue;
 */
 public class BasicPerformanceVenue implements PerformanceVenue {
 
-    private BasicSeat[][] Seats;
+    private BasicSeat[][] seats;
     private int numRows;
     private int numCols;
     private int availableSeats;
 
     public BasicPerformanceVenue(int numRows, int numCols) {
+        if (numRows <= 0 || numCols <= 0) {
+            throw new IndexOutOfBoundsException("numRows and numCols must both be greater than 0.");
+        }
+
         this.numRows = numRows;
         this.numCols = numCols;
         this.availableSeats = numRows * numCols;
+        this.seats = new BasicSeat[numRows][numCols];
 
     }
 
