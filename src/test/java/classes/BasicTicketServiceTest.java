@@ -21,6 +21,7 @@ public class BasicTicketServiceTest {
         assertNotNull("BasicTicketService has a findAndHoldSeats method", classUnderTest.findAndHoldSeats(numSeats, customerEmail));
     }
 
+    // Stubs don't work, just need to verify that there is a function.
     @Test(expected = NoSuchElementException.class)
     public void testHasReserveSeatsMethod() {
         BasicTicketService classUnderTest = new BasicTicketService();
@@ -78,6 +79,18 @@ public class BasicTicketServiceTest {
         int expectedOutputTwo = 0;
         int gotOutputTwo = ticketServiceTwo.numSeatsAvailable();
         assertEquals(expectedOutputTwo, gotOutputTwo);
+    }
+
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testThrowsExceptionIfNotEnoughSeats() {
+        // Works with constructor BasicTicketService(int numRows, int numCols)
+        BasicPerformanceVenue venue = new BasicPerformanceVenue(6, 6);
+        BasicTicketService ticketServiceOne = new BasicTicketService(venue);
+        ticketServiceOne.findAndHoldSeats(100, "thing@thing.com");
+
+        // Works with constructor BasicTicketService();
+        BasicTicketService ticketServiceTwo = new BasicTicketService();
+        ticketServiceTwo.findAndHoldSeats(100, "thing@thing.com");
     }
 
 
