@@ -123,6 +123,7 @@ public class BasicTicketService implements TicketService {
             BasicSeatHold reservation = this.reservations.get(idx);
             if (reservation.getId() == seatHoldId) {
                 this.reservations.remove(idx);
+                return;
             }
         }
 
