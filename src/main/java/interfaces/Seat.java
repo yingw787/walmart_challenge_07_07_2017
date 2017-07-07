@@ -10,12 +10,13 @@ public interface Seat {
     * Hold Seat.
     * @param holderId: the ID of the holder that will hold the seat.
     */
-    void hold(Integer holderId);
+    void hold(String holderId);
 
     /**
     * Reserve Seat.
     */
     void reserve();
+    void reserve(String claimerId);
 
     /**
     * Free Seat.

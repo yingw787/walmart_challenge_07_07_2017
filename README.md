@@ -57,8 +57,13 @@
 - The problem describes a "performance venue", which is assumed to be some collection of seats.
 - Assume that there is one instance of a "performance venue" in any given process.
 - The problem describes "best available seats", which is taken to assume that seats have different desirability.
+    - Assume that for the BasicPerformanceVenue, the desirability of a seat is linearly proportional to the row the seat is in (do not consider columns, levels, etc.)
 - Assume that end-user inputs are all sanitized, and all user information (such as email addresses) are validated.
 - Assume that one ticket matches one seat.
+- Assume that you can both reserve and hold -> reserve a seat, even though interface provides for only hold -> reserve
+    - Design classes for flexibility, as the interface will manage how strict implementations are
+- Assume that no assumption is made about the seat's position within the performance venue,
+  and that value is attached to each seat by itself.
 
 
 ### Design Considerations
@@ -66,3 +71,6 @@
 - All classes should implement an interface.
 - Use private variables when possible, and only expose with public methods, to
   avoid pollution.
+- Design classes for flexibility, and interfaces for strictness.
+
+- I considered having a barebones BasicSeat class, and having the BasicPerformanceVenue be a pair of stacks. That way, allocating a BasicSeat would be popping a BasicSeat off of an "available" stack of BasicSeats and pushing onto a stack of "held" or "reserved" BasicSeats. However, using a Stack would limit access to BasicSeats not recently pushed or popped, and access may be required for those BasicSeats.
