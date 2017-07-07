@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.ArrayList;
+
 import classes.BasicSeat;
 import interfaces.PerformanceVenue;
 
@@ -129,6 +131,34 @@ public class BasicPerformanceVenue implements PerformanceVenue {
     */
     public int getNumAvailableSeats() {
         return this.availableSeats;
+    }
+
+    /**
+    * Gets most valuable number of BasicSeats from BasicPerformanceVenue.
+    * Increment through this.seats as to find the most valuable seats.
+    * @param numSeats: number of seats desired
+    * @return ArrayList<Integer> of basicSeatIds
+    * @throw IndexOutOfBoundsException if not enough available seats.
+    */
+    public ArrayList<Integer> getMostValuableAvailableSeats(int numSeats) throws IndexOutOfBoundsException {
+        int numberOfSeats = numSeats;
+        ArrayList<Integer> basicSeatIds = new ArrayList<Integer>();
+
+        for (int rowIdx = 0; rowIdx < numRows; rowIdx++) {
+            for (int colIdx = 0; colIdx < numCols; colIdx++) {
+                BasicSeat seat = this.seats[rowIdx][colIdx];
+                if (seat.isFree()) {
+                    basicSeatIds.add(seat.getId());
+                    numberOfSeats -= 1;
+                    if (numberOfSeats == 0) {
+                        return basicSeatIds;
+                    }
+                }
+            }
+        }
+
+        String exceptionMessage = "Not enough seats available.";
+        throw new IndexOutOfBoundsException(exceptionMessage);
     }
 
 }

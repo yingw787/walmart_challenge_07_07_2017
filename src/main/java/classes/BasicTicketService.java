@@ -9,7 +9,8 @@ import interfaces.PerformanceVenue;
 import interfaces.TicketService;
 
 /**
-* BasicTicketService is a basic implementation of the TicketService interface.
+* BasicTicketService is a basic implementation of the TicketService
+*   interface.
 * Instance variables:
 *   - performanceVenue: an instance of a class that implements
 *     PerformanceVenue.
@@ -20,15 +21,16 @@ public class BasicTicketService implements TicketService {
 
     /**
     * The Performance Venue attached to the BasicTicketService.
-    * Separated out because don't want to tightly couple the BasicTicketService
-    *   to a particular Performance Venue.
+    * Separated out because don't want to tightly couple the
+    * BasicTicketService to a particular Performance Venue.
     */
     private PerformanceVenue performanceVenue;
     private ArrayList<BasicSeatHold> reservations = new ArrayList<BasicSeatHold>();
 
     public BasicTicketService() {
         /*
-            Initialize performanceVenue with some default numRows and numCols.
+            Initialize performanceVenue with some default numRows and
+            numCols.
 
             This is because BasicTicketService should not care about the
             specifics of the performance venue layout.
@@ -69,8 +71,13 @@ public class BasicTicketService implements TicketService {
     * (need to potentially traverse through all seats in the performance
     *   venue in order to find available ones)
     */
-    public BasicSeatHold findAndHoldSeats(int numSeats, String customerEmail) {
-
+    public BasicSeatHold findAndHoldSeats(int numSeats, String customerEmail) throws IndexOutOfBoundsException {
+        try {
+            ArrayList<Integer> basicSeatIds = this.performanceVenue.getMostValuableAvailableSeats(numSeats);
+        } catch (IndexOutOfBoundsException e) {
+            String exceptionMessage = "Not enough seats available.";
+            throw new IndexOutOfBoundsException(exceptionMessage);
+        }
         return new BasicSeatHold(new ArrayList<BasicSeat>());
     }
 

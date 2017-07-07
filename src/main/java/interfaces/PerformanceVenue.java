@@ -1,6 +1,6 @@
 package interfaces;
 
-import java.util.Collection;
+import java.util.ArrayList;
 
 import interfaces.Seat;
 
@@ -30,5 +30,7 @@ public interface PerformanceVenue {
     * @return: number of available seats.
     */
     int getNumAvailableSeats();
+
+    ArrayList<Integer> getMostValuableAvailableSeats(int numSeats) throws IndexOutOfBoundsException;
 
 }
