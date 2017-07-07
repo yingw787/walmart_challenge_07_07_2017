@@ -118,6 +118,7 @@ public class BasicTicketService implements TicketService {
     }
 
     private void removeReservation(int seatHoldId) throws NoSuchElementException {
+        // Iterating through with idx because need to remove from ArrayList by index.
         for (int idx = 0; idx < this.reservations.size(); idx++) {
             BasicSeatHold reservation = this.reservations.get(idx);
             if (reservation.getId() == seatHoldId) {

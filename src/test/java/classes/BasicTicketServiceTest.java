@@ -135,11 +135,30 @@ public class BasicTicketServiceTest {
     }
 
 
-
-
-    // @Test public void
-
-
     // Test reserveSeats() method:
+    // As BasicSeats are private and inaccessible to the TicketService, cannot test directly to see the state of BasicSeat instances.
+    // Could use reflection in order to test private methods and variables, but could be an anti-pattern.
+    // Just make sure that BasicSeats can be reserved without throwing Exceptions except where expected.
+    @Test public void testCanMakeOneReservation() {
+        BasicTicketService ticketService = new BasicTicketService();
+        BasicSeatHold reservationOne = ticketService.findAndHoldSeats(2, "thing@thing.com");
+        ticketService.reserveSeats(reservationOne.getId(), "thing@thing.com");
+    }
+
+    // @Test public void testCanPlaceMultipleReservations() {
+    //     BasicTicketService ticketService = new BasicTicketService();
+    //     BasicSeatHold reservationOne = ticketService.findAndHoldSeats(2, "thing@thing.com");
+    //     ticketService.reserveSeats(reservationOne.getId(), "thing@thing.com");
+    //
+    //     BasicSeatHold reservationTwo = ticketService.findAndHoldSeats(5, "thing2@thing.com");
+    //     ticketService.reserveSeats(reservationTwo.getId(), "thing2@thing.com");
+    // }
+
+    // @Test(expected = IllegalStateException.class)
+    // public void testThrowsExceptionWithIncorrectCustomerEmail() {
+    //     BasicTicketService ticketService = new BasicTicketService();
+    //     BasicSeatHold reservationOne = ticketService.findAndHoldSeats(2, "thing@thing.com");
+    //     ticketService.reserveSeats(reservationOne.getId(), "thing2@thing.com");
+    // }
 
 }
