@@ -60,9 +60,22 @@ public class BasicTicketServiceTest {
         assertEquals(expectedOutputTwo, gotOutputTwo);
     }
 
-    // @Test public void testReturnsNoSeatsIfAllSeatsAllocated() {
-    //
-    // }
+    @Test public void testReturnsNoSeatsIfAllSeatsAllocated() {
+        // Works with constructor BasicTicketService(int numRows, int numCols)
+        BasicPerformanceVenue venue = new BasicPerformanceVenue(6, 6);
+        BasicTicketService ticketServiceOne = new BasicTicketService(venue);
+        ticketServiceOne.findAndHoldSeats(36, "thing@thing.com");
+        int expectedOutputOne = 0;
+        int gotOutputOne = ticketServiceOne.numSeatsAvailable();
+        assertEquals(expectedOutputOne, gotOutputOne);
+
+        // Works with constructor BasicTicketService();
+        BasicTicketService ticketServiceTwo = new BasicTicketService();
+        ticketServiceTwo.findAndHoldSeats(25, "thing@thing.com");
+        int expectedOutputTwo = 0;
+        int gotOutputTwo = ticketServiceTwo.numSeatsAvailable();
+        assertEquals(expectedOutputTwo, gotOutputTwo);
+    }
 
 
     // Test findAndHoldSeats() method:
