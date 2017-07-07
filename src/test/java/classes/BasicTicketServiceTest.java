@@ -10,6 +10,7 @@ import classes.BasicTicketService;
 public class BasicTicketServiceTest {
 
     // Test that the BasicTicketService implements the TicketService interface, and methods exist.
+    // This works as these methods do have a return value. Does not work for void.
     @Test public void testHasNumSeatsAvailableMethod() {
         BasicTicketService classUnderTest = new BasicTicketService();
         assertNotNull("BasicTicketService has a numSeatsAvailable method", classUnderTest.numSeatsAvailable());
