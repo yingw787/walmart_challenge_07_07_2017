@@ -145,20 +145,20 @@ public class BasicTicketServiceTest {
         ticketService.reserveSeats(reservationOne.getId(), "thing@thing.com");
     }
 
-    // @Test public void testCanPlaceMultipleReservations() {
-    //     BasicTicketService ticketService = new BasicTicketService();
-    //     BasicSeatHold reservationOne = ticketService.findAndHoldSeats(2, "thing@thing.com");
-    //     ticketService.reserveSeats(reservationOne.getId(), "thing@thing.com");
-    //
-    //     BasicSeatHold reservationTwo = ticketService.findAndHoldSeats(5, "thing2@thing.com");
-    //     ticketService.reserveSeats(reservationTwo.getId(), "thing2@thing.com");
-    // }
+    @Test public void testCanPlaceMultipleReservations() {
+        BasicTicketService ticketService = new BasicTicketService();
+        BasicSeatHold reservationOne = ticketService.findAndHoldSeats(2, "thing@thing.com");
+        ticketService.reserveSeats(reservationOne.getId(), "thing@thing.com");
 
-    // @Test(expected = IllegalStateException.class)
-    // public void testThrowsExceptionWithIncorrectCustomerEmail() {
-    //     BasicTicketService ticketService = new BasicTicketService();
-    //     BasicSeatHold reservationOne = ticketService.findAndHoldSeats(2, "thing@thing.com");
-    //     ticketService.reserveSeats(reservationOne.getId(), "thing2@thing.com");
-    // }
+        BasicSeatHold reservationTwo = ticketService.findAndHoldSeats(5, "thing2@thing.com");
+        ticketService.reserveSeats(reservationTwo.getId(), "thing2@thing.com");
+    }
+
+    @Test(expected = IllegalStateException.class)
+    public void testThrowsExceptionWithIncorrectCustomerEmail() {
+        BasicTicketService ticketService = new BasicTicketService();
+        BasicSeatHold reservationOne = ticketService.findAndHoldSeats(2, "thing@thing.com");
+        ticketService.reserveSeats(reservationOne.getId(), "thing2@thing.com");
+    }
 
 }
