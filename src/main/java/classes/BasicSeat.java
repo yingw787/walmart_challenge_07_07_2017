@@ -49,9 +49,9 @@ public class BasicSeat implements Seat {
         // Can reserve a seat that is being held, as long as the person
         // reserving the seat is the same one who held it, or if the seat is
         // not reserved already.
-        if (this.isReserved || (this.isHeld && claimerId != this.holderId)) {
+        if (!this.isHeld || (this.isHeld && claimerId != this.holderId)) {
             // TODO: Raise Exception because you cannot hold a reserved or held seat.
-            throw new IllegalStateException("Cannot reserve seat if it is reserved or if the claimer's id does not match the holder's id.");
+            throw new IllegalStateException("Cannot reserve seat if it is not held or if the claimer's id does not match the holder's id.");
         } else {
             this.isHeld = false;
             this.isReserved = true;

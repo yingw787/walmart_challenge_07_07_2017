@@ -25,6 +25,15 @@ public class BasicPerformanceVenue implements PerformanceVenue {
     private int numCols;
     private int availableSeats;
 
+    /**
+    * Constructs a BasicPerformanceVenue.
+    * e.g. given a 5x5 matrix, the BasicSeat IDs would be arranged as such:
+    * [ 0,  1,  2,  3,  4]
+    * [ 5,  6,  7,  8,  9]
+    * [10, 11, 12, 13, 14]
+    * [15, 16, 17, 18, 19]
+    * [20, 21, 22, 23, 24]
+    */
     public BasicPerformanceVenue(int numRows, int numCols) {
         if (numRows <= 0 || numCols <= 0) {
             throw new IndexOutOfBoundsException("numRows and numCols must both be greater than 0.");
@@ -35,10 +44,44 @@ public class BasicPerformanceVenue implements PerformanceVenue {
         this.availableSeats = numRows * numCols;
         this.seats = new BasicSeat[numRows][numCols];
 
+        for (int rowIdx = 0; rowIdx < numRows; rowIdx++) {
+            for (int colIdx = 0; colIdx < numCols; colIdx++) {
+                // set the ID to increment as loops traverse over matrix.
+                // note that numCols is also the width of each row.
+                int basicSeatId = (numCols * rowIdx) + colIdx;
+
+                // value of each seat is based on which row it is in. More
+                //  complex logic can be added in at some later time.
+                int basicSeatValue = numRows - rowIdx;
+                this.seats[rowIdx][colIdx] = new BasicSeat(basicSeatId, basicSeatValue);
+            }
+        }
+
     }
 
+    /**
+    * Checks whether basicSeatId is a valid BasicSeat ID within given BasicPerformanceVenue instance.
+    * @param basicSeatId: possible ID of a BasicSeat within BasicPerformanceVenue.
+    * @return is basicSeatId a valid BasicSeat ID.
+    */
     private boolean isValidSeatId(int basicSeatId) {
-        return true;
+        return basicSeatId >= 0 && basicSeatId < numRows * numCols;
+    }
+
+    /**
+    * Gets a BasicSeat by a basicSeatId.
+    * @param basicSeatId: ID of a BasicSeat within BasicPerformanceVenue.
+    * @return BasicSeat with given ID.
+    */
+    private BasicSeat getSeatById(int basicSeatId) {
+        if (!this.isValidSeatId(basicSeatId)) {
+            String exceptionMessage = String.format("basicSeatId must be greater than or equal to %d and less than %d", 0, numRows * numCols);
+            throw new IndexOutOfBoundsException(exceptionMessage);
+        }
+
+        int rowIdx = basicSeatId / numCols;
+        int colIdx = basicSeatId % numCols;
+        return this.seats[rowIdx][colIdx];
     }
 
     /**
@@ -72,6 +115,7 @@ public class BasicPerformanceVenue implements PerformanceVenue {
     }
 
     /**
+    * Marks a BasicSet as freed.
     */
     public int markSeatAsFreed(int basicSeatId) {
         // TODO: Free the BasicSeat.
