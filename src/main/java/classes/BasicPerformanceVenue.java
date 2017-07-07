@@ -126,10 +126,11 @@ public class BasicPerformanceVenue implements PerformanceVenue {
     /**
     * Marks a BasicSet as freed.
     */
-    public int markSeatAsFreed(int basicSeatId) {
+    public void markSeatAsFreed(int basicSeatId) {
         // TODO: Free the BasicSeat.
+        BasicSeat seat = this.getSeatById(basicSeatId);
+        seat.free();
         this.availableSeats += 1;
-        return -1;
     }
 
     /**

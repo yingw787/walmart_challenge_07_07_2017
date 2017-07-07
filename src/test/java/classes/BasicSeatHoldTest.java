@@ -51,6 +51,7 @@ public class BasicSeatHoldTest {
         }
     }
 
+
     // Test getBasicSeatIds() method.
     @Test public void testBasicSeatIdsMatch() {
         ArrayList<Integer> expectedBasicSeatIds = new ArrayList<Integer>();
@@ -70,7 +71,8 @@ public class BasicSeatHoldTest {
         }
     }
 
-    // Test getReservationCode method.
+
+    // Test getReservationCode() method.
     @Test public void testReservationCodeIsIdAsStr() {
         ArrayList<Integer> basicSeatIds = new ArrayList<Integer>();
         BasicSeatHold classUnderTest = new BasicSeatHold(basicSeatIds);
