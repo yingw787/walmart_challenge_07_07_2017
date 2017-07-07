@@ -61,7 +61,7 @@ public class BasicTicketService implements TicketService {
     * @return a SeatHold object identifying the specific seats and related information
     */
     public BasicSeatHold findAndHoldSeats(int numSeats, String customerEmail) {
-        return new BasicSeatHold(new BasicSeat[0]);
+        return new BasicSeatHold(new ArrayList<BasicSeat>());
     }
 
     /**

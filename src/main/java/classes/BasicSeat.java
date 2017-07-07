@@ -74,4 +74,12 @@ public class BasicSeat implements Seat {
         return !isHeld && !isReserved;
     }
 
+    /**
+    * Gets ID of BasicSeat.
+    * @return ID of BasicSeat instance.
+    */
+    public int getId() {
+        return this.id;
+    }
+
 }

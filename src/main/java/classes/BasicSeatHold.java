@@ -1,5 +1,7 @@
 package classes;
 
+import java.util.ArrayList;
+
 import classes.BasicSeat;
 import interfaces.SeatHold;
 
@@ -13,19 +15,31 @@ import interfaces.SeatHold;
 */
 public class BasicSeatHold implements SeatHold {
 
-    private int id;
+    private int id = 1;
+    private ArrayList<Integer> basicSeatIds;
 
-    public BasicSeatHold(BasicSeat[] reservedSeats) {
+    public BasicSeatHold(ArrayList<BasicSeat> basicSeats) {
         // Generate ID from IDs of BasicSeats within reservedSeats.
         // That way, IDs will likely never collide.
+        // To generate unique ID, multiply all the IDs of the BasicSeats together.
+        for (BasicSeat seat: basicSeats) {
+            int seatId = seat.getId();
+            this.id *= seatId;
+            this.basicSeatIds.add(seatId);
+        }
     }
 
     public int getId() {
         return this.id;
     }
 
+    /**
+    * Return the ID of the BasicSeat in string form.
+    * Know that the ID is already unique, no need to create
+    *   another type of unique string.
+    */
     public String getReservationCode() {
-        return "thing";
+        return Integer.toString(this.id);
     }
 
 }
