@@ -4,6 +4,7 @@ import static org.junit.Assert.*;
 import java.util.NoSuchElementException;
 
 import classes.BasicPerformanceVenue;
+import classes.BasicSeatHold;
 import classes.BasicTicketService;
 
 public class BasicTicketServiceTest {
@@ -95,9 +96,20 @@ public class BasicTicketServiceTest {
 
 
     // Test findAndHoldSeats() method:
-    // @Test public void testCanFindOneSeat() {
-    //
-    // }
+    @Test public void testCanFindAndHoldOneSeat() {
+        BasicTicketService ticketService = new BasicTicketService();
+        BasicSeatHold reservationOne = ticketService.findAndHoldSeats(1, "thing@thing.com");
+
+        // As it is the very first reservation, it will contain BasicSeat with ID of 0, and its id will be the product of all BasicSeat IDs, which means it will be 0.
+        int expectedOutput = 0;
+        assertEquals(reservationOne.getId(), expectedOutput);
+
+        BasicSeatHold reservationTwo = ticketService.findAndHoldSeats(1, "thing@thing.com");
+
+        // As the prior BasicSeatHold has not been freed, and the second BasicSeatHold is allotted one BasicSeat, it will contain the BasicSeat of ID 1, which means its ID will also be 1.
+        expectedOutput = 1;
+        assertEquals(reservationTwo.getId(), expectedOutput);
+    }
 
 
     // @Test public void
