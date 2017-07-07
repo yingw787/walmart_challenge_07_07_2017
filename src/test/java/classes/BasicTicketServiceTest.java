@@ -111,6 +111,21 @@ public class BasicTicketServiceTest {
         assertEquals(reservationTwo.getId(), expectedOutput);
     }
 
+    @Test public void testCanFindAndHoldMultipleSeats() {
+        BasicTicketService ticketService = new BasicTicketService();
+        BasicSeatHold reservationOne = ticketService.findAndHoldSeats(2, "thing@thing.com");
+
+        // As it is the very first reservation, it will contain BasicSeat with ID of 0, and its id will be the product of all BasicSeat IDs, which means it will be 0.
+        int expectedOutput = 0;
+        assertEquals(reservationOne.getId(), expectedOutput);
+
+        BasicSeatHold reservationTwo = ticketService.findAndHoldSeats(2, "thing@thing.com");
+
+        // As the prior BasicSeatHold has not been freed, and the second BasicSeatHold is allotted one BasicSeat, it will contain the BasicSeats of IDs 2 and 3, which means its ID will be 6.
+        expectedOutput = 6;
+        assertEquals(reservationTwo.getId(), expectedOutput);
+    }
+
 
     // @Test public void
 
