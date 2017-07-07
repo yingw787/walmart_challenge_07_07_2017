@@ -36,6 +36,7 @@ public class BasicTicketServiceTest {
     @Test public void testReturnsTotalSeatsIfNoneAllocated() {
         // Works with constructor BasicTicketService(int numRows, int numCols)
         BasicPerformanceVenue venue = new BasicPerformanceVenue(6, 6);
+
         BasicTicketService ticketServiceOne = new BasicTicketService(venue);
         int expectedOutputOne = 6 * 6;
         int gotOutputOne = ticketServiceOne.numSeatsAvailable();
@@ -51,6 +52,7 @@ public class BasicTicketServiceTest {
     @Test public void testReturnsRemainingNumSeatsIfSomeSeatsAllocated() {
         // Works with constructor BasicTicketService(int numRows, int numCols)
         BasicPerformanceVenue venue = new BasicPerformanceVenue(6, 6);
+
         BasicTicketService ticketServiceOne = new BasicTicketService(venue);
         ticketServiceOne.findAndHoldSeats(6, "thing@thing.com");
         int expectedOutputOne = 6 * 5;
@@ -68,6 +70,7 @@ public class BasicTicketServiceTest {
     @Test public void testReturnsNoSeatsIfAllSeatsAllocated() {
         // Works with constructor BasicTicketService(int numRows, int numCols)
         BasicPerformanceVenue venue = new BasicPerformanceVenue(6, 6);
+
         BasicTicketService ticketServiceOne = new BasicTicketService(venue);
         ticketServiceOne.findAndHoldSeats(36, "thing@thing.com");
         int expectedOutputOne = 0;
@@ -86,6 +89,7 @@ public class BasicTicketServiceTest {
     public void testThrowsExceptionIfNotEnoughSeats() {
         // Works with constructor BasicTicketService(int numRows, int numCols)
         BasicPerformanceVenue venue = new BasicPerformanceVenue(6, 6);
+
         BasicTicketService ticketServiceOne = new BasicTicketService(venue);
         ticketServiceOne.findAndHoldSeats(100, "thing@thing.com");
 
@@ -98,14 +102,13 @@ public class BasicTicketServiceTest {
     // Test findAndHoldSeats() method:
     @Test public void testCanFindAndHoldOneSeat() {
         BasicTicketService ticketService = new BasicTicketService();
-        BasicSeatHold reservationOne = ticketService.findAndHoldSeats(1, "thing@thing.com");
 
+        BasicSeatHold reservationOne = ticketService.findAndHoldSeats(1, "thing@thing.com");
         // As it is the very first reservation, it will contain BasicSeat with ID of 0, and its id will be the product of all BasicSeat IDs, which means it will be 0.
         int expectedOutput = 0;
         assertEquals(reservationOne.getId(), expectedOutput);
 
         BasicSeatHold reservationTwo = ticketService.findAndHoldSeats(1, "thing@thing.com");
-
         // As the prior BasicSeatHold has not been freed, and the second BasicSeatHold is allotted one BasicSeat, it will contain the BasicSeat of ID 1, which means its ID will also be 1.
         expectedOutput = 1;
         assertEquals(reservationTwo.getId(), expectedOutput);
@@ -113,18 +116,25 @@ public class BasicTicketServiceTest {
 
     @Test public void testCanFindAndHoldMultipleSeats() {
         BasicTicketService ticketService = new BasicTicketService();
-        BasicSeatHold reservationOne = ticketService.findAndHoldSeats(2, "thing@thing.com");
 
+        BasicSeatHold reservationOne = ticketService.findAndHoldSeats(2, "thing@thing.com");
         // As it is the very first reservation, it will contain BasicSeat with ID of 0, and its id will be the product of all BasicSeat IDs, which means it will be 0.
         int expectedOutput = 0;
         assertEquals(reservationOne.getId(), expectedOutput);
 
         BasicSeatHold reservationTwo = ticketService.findAndHoldSeats(2, "thing@thing.com");
-
         // As the prior BasicSeatHold has not been freed, and the second BasicSeatHold is allotted one BasicSeat, it will contain the BasicSeats of IDs 2 and 3, which means its ID will be 6.
         expectedOutput = 6;
         assertEquals(reservationTwo.getId(), expectedOutput);
+
+        BasicSeatHold reservationThree = ticketService.findAndHoldSeats(5, "thing@thing.com");
+        // As the prior BasicSeatHold has not been freed, and the second BasicSeatHold is allotted one BasicSeat, it will contain the BasicSeats of IDs 4, 5, 6, 7, 8, which means its ID will be 8!/3!.
+        // Not going to include factorial library for one test. Use basic multiplication instead.
+        expectedOutput = 4 * 5 * 6 * 7 * 8;
+        assertEquals(reservationThree.getId(), expectedOutput);
     }
+
+
 
 
     // @Test public void

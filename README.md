@@ -66,6 +66,7 @@
   and that value is attached to each seat by itself.
 - Assume that if not all the seats could be allocated in findAndHoldSeats(), then do not reserve any seats (instead of reserving all BasicSeats possible).
 - Assume that for BasicPerformanceVenue, the venue will never change size after being constructed (if in the future it does, instantiate a new BasicPerformanceVenue and copy data over).
+- Assume that freeing and re-allocating the seats will be outside the immediate scope of this challenge as it is not specified in the interface, and will not be tested (although the classes built do support such behavior).
 
 
 ### Design Considerations
