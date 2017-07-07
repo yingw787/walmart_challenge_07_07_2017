@@ -1,6 +1,7 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.NoSuchElementException;
 
 import classes.BasicPerformanceVenue;
 import classes.BasicSeat;
@@ -96,7 +97,36 @@ public class BasicTicketService implements TicketService {
     *   state to reserved)
     */
     public String reserveSeats(int seatHoldId, String customerEmail) {
-        return "thing";
+        BasicSeatHold reservation = this.findReservation(seatHoldId);
+        for (Integer seatId : reservation.getBasicSeatIds()) {
+            this.performanceVenue.markSeatAsReserved(seatId, customerEmail);
+        }
+
+        this.removeReservation(seatHoldId);
+        return reservation.getReservationCode();
+    }
+
+    private BasicSeatHold findReservation(int seatHoldId) throws NoSuchElementException {
+        for (BasicSeatHold reservation : this.reservations) {
+            if (reservation.getId() == seatHoldId) {
+                return reservation;
+            }
+        }
+
+        String exceptionMessage = "seatHoldId not found in current active SeatHolds.";
+        throw new NoSuchElementException(exceptionMessage);
+    }
+
+    private void removeReservation(int seatHoldId) throws NoSuchElementException {
+        for (int idx = 0; idx < this.reservations.size(); idx++) {
+            BasicSeatHold reservation = this.reservations.get(idx);
+            if (reservation.getId() == seatHoldId) {
+                this.reservations.remove(idx);
+            }
+        }
+
+        String exceptionMessage = "seatHoldId not found in current active SeatHolds.";
+        throw new NoSuchElementException(exceptionMessage);
     }
 
 }

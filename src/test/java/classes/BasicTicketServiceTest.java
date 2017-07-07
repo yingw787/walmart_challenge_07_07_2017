@@ -1,6 +1,8 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
 
+import java.util.NoSuchElementException;
+
 import classes.BasicPerformanceVenue;
 import classes.BasicTicketService;
 
@@ -19,7 +21,8 @@ public class BasicTicketServiceTest {
         assertNotNull("BasicTicketService has a findAndHoldSeats method", classUnderTest.findAndHoldSeats(numSeats, customerEmail));
     }
 
-    @Test public void testHasReserveSeatsMethod() {
+    @Test(expected = NoSuchElementException.class)
+    public void testHasReserveSeatsMethod() {
         BasicTicketService classUnderTest = new BasicTicketService();
         int seatHoldId = 5; // stubbed seatHoldId input
         String customerEmail = "thing@thing.com"; // stubbed customerEmail input
